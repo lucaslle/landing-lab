@@ -10,6 +10,19 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "jeux",
+    title: "Boutique de jeux",
+    description: "Pulse, marketplace fictive : jeux inventés, recherche, amis en ligne, liste de souhaits, panier et bibliothèque.",
+    status: "draft",
+    hue: 320,
+    pages: [
+      { label: "Fiche Hollow Monastery", href: "/l/jeux/jeu/hollow-monastery" },
+      { label: "Liste de souhaits", href: "/l/jeux/souhaits" },
+      { label: "Panier", href: "/l/jeux/panier" },
+      { label: "Bibliothèque", href: "/l/jeux/bibliotheque" },
+    ],
+  },
+  {
     slug: "velo",
     title: "Vélo",
     description: "Kairn, marque fictive : trois vélos à présenter avec points d'info, fiches, guide des tailles et panier.",

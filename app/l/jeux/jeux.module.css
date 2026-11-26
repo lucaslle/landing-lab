@@ -1,0 +1,862 @@
+/* Plum night, glassy panels and one sunset gradient for the buy buttons; the covers carry the color.
+   Doubled class beats .cr-theme-dark whatever the CSS order. */
+.page.page {
+  --night: #0e0b15;
+  --panel: rgb(255 255 255 / 0.04);
+  --raised: rgb(255 255 255 / 0.07);
+  --line: rgb(255 255 255 / 0.08);
+  --text: #f3eff9;
+  --text-2: #a69fb5;
+  --muted: #7c7489;
+  --sunset: linear-gradient(90deg, #d9481c, #c42a62);
+  --orange: #ff8a4c;
+  --online: #3ddc84;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --cr-color-primary: #c8406a;
+  --cr-color-primary-text: #ff9bb8;
+  --cr-color-primary-indicator: #ff7aa0;
+  --cr-color-primary-subtle: rgb(200 64 106 / 0.18);
+  --cr-color-primary-subtle-hover: rgb(200 64 106 / 0.26);
+  --cr-color-focus: #ff9bb8;
+  --cr-color-surface: #1a1524;
+  --cr-color-text: var(--text);
+  --cr-color-text-muted: var(--text-2);
+  --cr-color-border: rgb(255 255 255 / 0.12);
+
+  color-scheme: dark;
+  min-height: 100dvh;
+  padding: 24px;
+  color: var(--text);
+  background:
+    radial-gradient(900px 500px at 50% 0%, rgb(140 60 160 / 0.35), transparent 70%),
+    radial-gradient(700px 500px at 100% 100%, rgb(200 64 106 / 0.18), transparent 70%),
+    var(--night);
+  font-family: var(--font-geist-sans), var(--cr-font-family);
+}
+
+.icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.toastLink {
+  color: inherit;
+}
+
+/* Sunset buy button with white text (4.5:1 on both ends of the gradient). */
+.cta {
+  --cr-button-background: var(--sunset);
+  --cr-button-background-hover: linear-gradient(90deg, #c23d14, #ad2253);
+  --cr-button-color: #fff;
+}
+
+/* ---- App shell ---- */
+
+.app {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr) 260px;
+  max-width: 1480px;
+  min-height: calc(100dvh - 48px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgb(14 11 21 / 0.8);
+  box-shadow: 0 40px 80px rgb(0 0 0 / 0.4);
+}
+
+.side {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: calc(100dvh - 48px);
+  padding: 24px 16px;
+  border-right: 1px solid var(--line);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  color: var(--text);
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background:
+    linear-gradient(135deg, transparent 45%, var(--night) 45% 60%, transparent 60%),
+    var(--sunset);
+}
+
+.sideNav {
+  display: grid;
+  gap: 4px;
+}
+
+.sideNav a,
+.sideBack {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  color: var(--text-2);
+  font-size: 14px;
+  text-decoration: none;
+  transition:
+    background 150ms var(--ease),
+    color 150ms var(--ease);
+}
+
+.sideNav a:hover,
+.sideBack:hover {
+  color: var(--text);
+  background: var(--panel);
+}
+
+.sideNav a[aria-current="page"] {
+  color: var(--text);
+  background: var(--raised);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.sideNav a[aria-current="page"] .icon {
+  color: var(--orange);
+}
+
+.count {
+  margin-left: auto;
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--text);
+  background: var(--raised);
+}
+
+.sideBack {
+  margin-top: auto;
+}
+
+.me {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--panel);
+  font-size: 14px;
+}
+
+.me span {
+  display: grid;
+}
+
+.me small {
+  color: var(--online);
+  font-size: 12px;
+}
+
+.center {
+  display: grid;
+  /* A plain 1fr track would grow to the scrolling row's full width. */
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 24px;
+  min-width: 0;
+  padding: 20px 28px 28px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  max-width: 440px;
+  height: 40px;
+  padding: 0 8px 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  background: var(--panel);
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.search :global(cr-kbd) {
+  margin-left: auto;
+}
+
+.search:focus-visible {
+  outline: 2px solid var(--cr-color-focus);
+  outline-offset: 2px;
+}
+
+.topActions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.note {
+  margin: 24px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.note a {
+  color: inherit;
+}
+
+/* ---- Community column ---- */
+
+.social {
+  display: grid;
+  align-content: start;
+  gap: 32px;
+  padding: 24px 20px;
+  border-left: 1px solid var(--line);
+}
+
+.socialTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.socialTitle span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.people {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.people li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.people li > span:last-child {
+  display: grid;
+  min-width: 0;
+}
+
+.people small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.people .playing {
+  color: var(--online);
+}
+
+.trophy {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--orange);
+  background: var(--raised);
+}
+
+.trophy .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Hero ---- */
+
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 420px;
+  padding: 40px;
+  overflow: hidden;
+  border-radius: 20px;
+  isolation: isolate;
+}
+
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  height: 100%;
+  animation: fade 700ms var(--ease) backwards;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgb(14 11 21 / 0.95), rgb(14 11 21 / 0.6) 50%, transparent 85%),
+    linear-gradient(to top, rgb(14 11 21 / 0.7), transparent 50%);
+}
+
+.heroText {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  max-width: 440px;
+  animation: rise 600ms var(--ease) backwards;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.heroPitch {
+  margin: 0;
+  color: rgb(255 255 255 / 0.8);
+  line-height: 24px;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.trailerButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  color: var(--text);
+  background: none;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.trailerButton span {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.trailerButton svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+.trailerButton:focus-visible,
+.dots button:focus-visible {
+  outline: 2px solid var(--cr-color-focus);
+  outline-offset: 2px;
+}
+
+.heroLink {
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  display: flex;
+  gap: 6px;
+  translate: -50% 0;
+}
+
+.dots button {
+  width: 24px;
+  height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: rgb(255 255 255 / 0.3);
+  cursor: pointer;
+}
+
+.dots button[aria-current="true"] {
+  width: 40px;
+  background: #fff;
+}
+
+.shots {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+.shot {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+}
+
+/* ---- Game cards ---- */
+
+.heading {
+  margin: 0 0 16px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.row {
+  position: relative;
+}
+
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 168px;
+  gap: 16px;
+  margin: 0;
+  padding: 0 0 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.track > li {
+  scroll-snap-align: start;
+}
+
+.rowButtons {
+  position: absolute;
+  top: -52px;
+  right: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.game {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  border-radius: 16px;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--panel);
+  transition: translate 250ms var(--ease);
+}
+
+.game:hover {
+  translate: 0 -4px;
+}
+
+.game:focus-visible {
+  outline: 2px solid var(--cr-color-focus);
+  outline-offset: 3px;
+}
+
+.gameCover {
+  aspect-ratio: 4 / 5;
+}
+
+.off {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--sunset);
+}
+
+.gameInfo {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 2px;
+  padding: 40px 12px 12px;
+  background: linear-gradient(transparent, rgb(14 11 21 / 0.95));
+}
+
+.gameInfo strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.prices {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.prices s {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---- Game page ---- */
+
+.banner {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.banner :global(cr-image) {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 32px;
+}
+
+.detailBody {
+  display: grid;
+  gap: 20px;
+}
+
+.gameTitle {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.prose {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--text-2);
+}
+
+.features {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: var(--orange);
+  vertical-align: middle;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.buyBox {
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 14px;
+}
+
+.bigPrice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 30px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bigPrice s {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.facts {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.facts div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.facts dt {
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+  text-align: right;
+}
+
+/* ---- Lists and cart ---- */
+
+.page2 {
+  display: grid;
+  gap: 24px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.lines {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 10px;
+  border-radius: 14px;
+  background: var(--panel);
+}
+
+.lineCover {
+  width: 64px;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+}
+
+.line a {
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.line small {
+  display: block;
+  color: var(--muted);
+}
+
+.linePrice {
+  font-variant-numeric: tabular-nums;
+}
+
+.checkout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 24px;
+}
+
+.summary {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary dt {
+  color: var(--text-2);
+}
+
+.summary dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary .total {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display), sans-serif;
+  font-size: 22px;
+}
+
+.summary .total dt {
+  color: var(--text);
+}
+
+.saving dd {
+  color: var(--online);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  .app {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  .social {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .page.page {
+    padding: 0;
+  }
+
+  .app {
+    grid-template-columns: 1fr;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .side {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .sideNav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .sideBack,
+  .me {
+    display: none;
+  }
+
+  .center {
+    padding: 16px;
+  }
+
+  .hero {
+    padding: 24px;
+  }
+
+  .detail,
+  .checkout {
+    grid-template-columns: 1fr;
+  }
+
+  .buyBox {
+    position: static;
+  }
+
+  .line {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPhoto,
+  .heroText {
+    animation: none;
+  }
+}
