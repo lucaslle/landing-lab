@@ -10,6 +10,19 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "concession",
+    title: "Concessionnaire de prestige",
+    description: "Renc, concession fictive : 10 voitures de prestige, fiches avec financement, essai sur rendez-vous et journal.",
+    status: "draft",
+    hue: 25,
+    pages: [
+      { label: "Véhicules", href: "/l/concession/vehicules" },
+      { label: "Fiche Flying Spur", href: "/l/concession/vehicules/bentley-flying-spur" },
+      { label: "Essai", href: "/l/concession/essai" },
+      { label: "Journal", href: "/l/concession/journal" },
+    ],
+  },
+  {
     slug: "fast-food",
     title: "Fast food",
     description: "Tasty Bites, fast food fictif : 16 produits, fiches avec options, panier et commande en livraison ou à emporter.",
