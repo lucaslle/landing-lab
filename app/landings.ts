@@ -10,6 +10,18 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "fast-food",
+    title: "Fast food",
+    description: "Tasty Bites, fast food fictif : 16 produits, fiches avec options, panier et commande en livraison ou à emporter.",
+    status: "draft",
+    hue: 38,
+    pages: [
+      { label: "La carte", href: "/l/fast-food/carte" },
+      { label: "Fiche Classic Burger", href: "/l/fast-food/carte/classic-burger" },
+      { label: "Commande", href: "/l/fast-food/commande" },
+    ],
+  },
+  {
     slug: "immobilier",
     title: "Agence immobilière",
     description: "Haven, agence fictive : 16 maisons et appartements, fiches avec simulation de prêt, estimation en ligne et prise de rendez-vous.",

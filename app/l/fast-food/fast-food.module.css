@@ -1,0 +1,868 @@
+/* Cream paper, a brush script and one mustard accent; dark hero and banner frame the food photos.
+   Doubled class beats .cr-theme whatever the CSS order; Cristal derives its shades from this primary. */
+.page.page {
+  --cream: #faf6ee;
+  --card: #ffffff;
+  --ink: #1d1a16;
+  --text-2: #5d564c;
+  --muted: #857d71;
+  --line: rgb(29 26 22 / 0.1);
+  --mustard: #f5a524;
+  --mustard-dark: #9a5b00;
+  --night: #15120f;
+  --forest: #142219;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --cr-color-primary: var(--mustard);
+  --cr-color-on-primary: var(--ink);
+  --cr-color-primary-text: var(--mustard-dark);
+  --cr-color-focus: var(--mustard-dark);
+  --cr-color-surface: var(--card);
+  --cr-color-text: var(--ink);
+  --cr-color-text-muted: var(--text-2);
+
+  /* The site's dark theme sets color-scheme on :root; native controls must stay light here. */
+  color-scheme: light;
+  min-height: 100dvh;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: var(--font-geist-sans), var(--cr-font-family);
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.eyebrow::after {
+  content: "";
+  width: 32px;
+  height: 2px;
+  background: var(--mustard);
+}
+
+/* Mustard buttons with dark text, an arrow after the label. */
+.cta,
+.barButton,
+.addButton {
+  --cr-button-background: var(--mustard);
+  --cr-button-background-hover: #ffb93d;
+  --cr-button-color: var(--ink);
+}
+
+.outline {
+  --cr-button-border: rgb(29 26 22 / 0.3);
+  --cr-button-color: var(--ink);
+}
+
+/* ---- Bar ---- */
+
+.bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 32px;
+  color: #fff;
+}
+
+.logo {
+  display: grid;
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--font-script), cursive;
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.logo small {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.nav {
+  display: flex;
+  gap: 28px;
+  margin: 0 auto;
+}
+
+.nav a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -6px;
+  height: 2px;
+  background: var(--mustard);
+  scale: 0 1;
+  transition: scale 200ms var(--ease);
+}
+
+.nav a:hover::after {
+  scale: 1 1;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cartButton {
+  --cr-button-color: #fff;
+}
+
+/* Inner pages have no dark hero: the bar sits on cream. */
+.page:has(.inner) .bar,
+.page:has(.product) .bar {
+  position: static;
+  color: var(--ink);
+}
+
+.page:has(.inner) .cartButton,
+.page:has(.product) .cartButton {
+  --cr-button-color: var(--ink);
+}
+
+/* ---- Hero ---- */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: min(760px, 100dvh);
+  padding: 120px 32px 72px;
+  overflow: hidden;
+  color: #fff;
+  background: var(--night);
+  border-radius: 0 0 40px 40px;
+}
+
+.heroPhoto {
+  position: absolute;
+  inset: 0 0 0 30%;
+  height: 100%;
+  mask-image: linear-gradient(to right, transparent, #000 30%);
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+/* Keeps the navigation readable over the bun. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 160px;
+  background: linear-gradient(rgb(21 18 15 / 0.85), transparent);
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+  animation: rise 800ms var(--ease) backwards;
+}
+
+.title {
+  display: grid;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+.title span {
+  font-size: 0.72em;
+  font-weight: 600;
+}
+
+.title em,
+.bannerTitle em {
+  color: var(--mustard);
+  font-family: var(--font-script), cursive;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.title em {
+  font-size: 1.6em;
+  line-height: 0.6;
+}
+
+.lead {
+  max-width: 28rem;
+  margin: 0;
+  font-size: 17px;
+  line-height: 26px;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.features {
+  display: flex;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 0 24px;
+  font-size: 13px;
+  border-left: 1px solid rgb(255 255 255 / 0.2);
+}
+
+.features li:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.featureIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Hand-written stickers, the signature of the brand. */
+.sticker,
+.stickerLight {
+  position: absolute;
+  right: max(32px, calc(50% - 600px));
+  margin: 0;
+  max-width: 8ch;
+  font-family: var(--font-script), cursive;
+  font-size: 28px;
+  line-height: 1.05;
+  text-align: center;
+  rotate: 8deg;
+}
+
+.sticker {
+  bottom: 56px;
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 0.6);
+}
+
+.stickerLight {
+  top: 40px;
+  color: #fff;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 0.7);
+  rotate: -6deg;
+}
+
+/* ---- Sections ---- */
+
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 96px;
+}
+
+.section {
+  margin-top: 80px;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: 32px;
+}
+
+.sectionHead > div {
+  display: grid;
+  gap: 8px;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* ---- Product cards ---- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgb(29 26 22 / 0.06), 0 8px 24px rgb(29 26 22 / 0.06);
+  animation: rise 600ms var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+  transition: translate 250ms var(--ease);
+}
+
+.card:hover {
+  translate: 0 -4px;
+}
+
+.card:has(.cardLink:focus-visible) {
+  outline: 2px solid var(--mustard-dark);
+  outline-offset: 3px;
+}
+
+.cardMedia {
+  position: relative;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+}
+
+.cardPhoto {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  transition: scale 600ms var(--ease);
+}
+
+.card:hover .cardPhoto {
+  scale: 1.06;
+}
+
+.cardTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.cardBody {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 8px;
+  padding: 16px 20px 20px;
+}
+
+.cardName {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cardLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardLink:focus-visible {
+  outline: none;
+}
+
+/* The whole card opens the product; the add button sits above this link. */
+.cardLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.cardText {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-2);
+}
+
+.cardFoot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.price {
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.addButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---- Delivery banner ---- */
+
+.banner {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 440px;
+  padding: 64px 32px;
+  overflow: hidden;
+  color: #fff;
+  background: var(--forest);
+}
+
+.bannerPhoto {
+  position: absolute;
+  inset: 0 0 0 40%;
+  height: 100%;
+  mask-image: linear-gradient(to right, transparent, #000 25%);
+}
+
+.bannerText {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+.bannerText p:not(.kicker) {
+  max-width: 26rem;
+  margin: 0;
+  color: rgb(255 255 255 / 0.8);
+  line-height: 24px;
+}
+
+.bannerTitle {
+  display: grid;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.bannerTitle em {
+  font-size: 1.5em;
+}
+
+/* ---- Footer ---- */
+
+.footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.promises {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0 0 32px;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.promises li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.promiseIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--mustard-dark);
+}
+
+.footerBottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 24px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footerBottom p {
+  margin: 0;
+}
+
+.footerBottom a,
+.toastLink {
+  color: inherit;
+}
+
+/* ---- Inner pages ---- */
+
+.inner {
+  display: grid;
+  gap: 24px;
+  padding-top: 24px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.group + .group {
+  margin-top: 56px;
+}
+
+.groupTitle {
+  margin: 0 0 20px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* Product page */
+
+.product {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 48px;
+  padding-top: 24px;
+}
+
+.productPhoto {
+  aspect-ratio: 1;
+  border-radius: 28px;
+  overflow: hidden;
+}
+
+.productBody {
+  display: grid;
+  gap: 20px;
+}
+
+.productTitle {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.productText {
+  margin: 0;
+  font-size: 17px;
+  line-height: 27px;
+  color: var(--text-2);
+}
+
+.allergens {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.options {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgb(29 26 22 / 0.06), 0 8px 24px rgb(29 26 22 / 0.06);
+}
+
+.extras {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.extras legend {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.buy {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.total {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Order page */
+
+.order {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: start;
+  gap: 32px;
+}
+
+.lines {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.linePhoto {
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.line strong {
+  display: block;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 600;
+}
+
+.line small {
+  color: var(--muted);
+}
+
+.linePrice {
+  min-width: 80px;
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.fieldset {
+  display: grid;
+  gap: 20px;
+  margin: 24px 0 0;
+  padding: 24px;
+  border: 0;
+  border-radius: 20px;
+  background: var(--card);
+}
+
+.fieldset legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 4px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.aside {
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.summary {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.summary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.summary dt {
+  color: var(--text-2);
+}
+
+.summary dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary .grandTotal {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display), sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.summary .grandTotal dt {
+  color: var(--ink);
+}
+
+.confirmation {
+  display: grid;
+  gap: 24px;
+  max-width: 720px;
+}
+
+.confirmationActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+@keyframes drift {
+  to {
+    scale: 1.05;
+  }
+}
+
+@media (max-width: 960px) {
+  .product,
+  .order {
+    grid-template-columns: 1fr;
+  }
+
+  .aside {
+    position: static;
+  }
+
+  .heroPhoto,
+  .bannerPhoto {
+    inset: 0;
+    opacity: 0.45;
+    mask-image: none;
+  }
+
+  .sticker,
+  .stickerLight {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    display: none;
+  }
+
+  .bar {
+    justify-content: space-between;
+    padding: 16px;
+  }
+
+  .hero,
+  .banner {
+    padding-inline: 16px;
+  }
+
+  .main,
+  .footer {
+    padding-inline: 16px;
+  }
+
+  .features li {
+    padding: 0 12px;
+  }
+
+  .line {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .linePhoto {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPhoto,
+  .heroInner,
+  .card {
+    animation: none;
+  }
+}
