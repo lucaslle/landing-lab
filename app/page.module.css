@@ -1,158 +1,209 @@
-@property --angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
+/* Graphite neutrals, one proofing-pencil accent, crop marks around each preview.
+   The previews carry the color. */
+.page {
+  --bg: #f4f4f5;
+  --card: #ffffff;
+  --raised: #ebebec;
+  --text: #171717;
+  --text-2: #525252;
+  --muted: #737373;
+  --hairline: rgb(23 23 23 / 0.08);
+  --accent: #c2410c;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Cristal derives its tokens at :root from its own colors: map them to this ramp. */
+  --cr-color-surface: var(--card);
+  --cr-color-text: var(--text);
+  --cr-color-text-muted: var(--text-2);
+  --cr-color-border: rgb(23 23 23 / 0.14);
+  --cr-color-primary: var(--accent);
+  --cr-color-primary-text: var(--accent);
+  --cr-color-primary-indicator: var(--accent);
+  --cr-color-primary-subtle: var(--raised);
+  --cr-color-primary-subtle-hover: color-mix(in oklab, var(--text) 8%, var(--card));
+  --cr-color-focus: var(--accent);
+
+  min-height: 100dvh;
+  color: var(--text);
+  background: var(--bg);
+  font-family: var(--font-geist-sans), var(--cr-font-family);
 }
 
-.page {
-  display: block;
-  min-height: 100dvh;
-  padding: var(--cr-spacing-xl) var(--cr-spacing-lg) var(--cr-spacing-3xl);
+:global(:root[data-theme="dark"]) .page {
+  --bg: #111112;
+  --card: #19191b;
+  --raised: #232325;
+  --text: #ededed;
+  --text-2: #a1a1a6;
+  --muted: #85858b;
+  --hairline: rgb(237 237 237 / 0.08);
+  --accent: #ff6b3d;
+  --cr-color-border: rgb(237 237 237 / 0.14);
 }
+
+/* ---- Bar ---- */
 
 .bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--cr-spacing-lg);
-  max-width: 1120px;
+  gap: 16px;
+  max-width: 1280px;
+  height: 64px;
   margin: 0 auto;
+  padding: 0 32px;
 }
 
 .brand {
-  font-weight: var(--cr-font-weight-bold);
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Logo mark: a loupe, the tool you read a light table with. */
+.loupe {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+
+.loupe::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  bottom: -4px;
+  width: 6px;
+  height: 1.5px;
+  background: currentColor;
+  rotate: 45deg;
 }
 
 .actions {
   display: flex;
   align-items: center;
-  gap: var(--cr-spacing-sm);
+  gap: 8px;
+}
+
+/* Quiet search trigger: raised surface, hairline, primary text. */
+.trigger {
+  --cr-button-background: var(--raised);
+  --cr-button-background-hover: color-mix(in oklab, var(--text) 8%, var(--card));
+  --cr-button-color: var(--text);
+  --cr-button-border: var(--hairline);
 }
 
 .main {
-  max-width: 1120px;
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 8px 32px 96px;
 }
 
-.hero {
-  display: grid;
-  justify-items: center;
-  gap: var(--cr-spacing-lg);
-  padding: var(--cr-spacing-3xl) 0;
-  text-align: center;
-  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+/* ---- Intro ---- */
+
+.intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding: 64px 0 32px;
+  border-bottom: 1px solid var(--hairline);
+  animation: rise 400ms var(--ease) backwards;
 }
 
 .title {
   margin: 0;
-  font-size: clamp(2.75rem, 9vw, 6rem);
-  line-height: 1.1;
-  padding-bottom: 0.08em; /* background-clip: text clips descenders otherwise */
-  letter-spacing: -0.04em;
-  font-weight: 800;
-  background: linear-gradient(
-    100deg,
-    var(--cr-color-text) 20%,
-    var(--cr-color-primary-text) 40%,
-    oklch(from var(--cr-color-primary-text) l c calc(h + 60)) 50%,
-    var(--cr-color-text) 70%
-  );
-  background-size: 250% 100%;
-  background-clip: text;
-  color: transparent;
-  animation: shine 6s ease-in-out infinite alternate;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(44px, 6vw, 72px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 .lead {
-  max-width: 36ch;
-  margin: 0;
-  font-size: var(--cr-font-size-l);
-  color: var(--cr-color-text-muted);
+  max-width: 40rem;
+  margin: 12px 0 0;
+  font-size: 17px;
+  line-height: 26px;
+  color: var(--text-2);
 }
+
+.count {
+  margin: 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 13px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.count strong {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+/* ---- Cards ---- */
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: var(--cr-spacing-xl);
-  margin: 0;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 24px;
+  margin: 32px 0 0;
   padding: 0;
   list-style: none;
 }
 
-/* Animated border: a rotating light runs along the card edge on hover or focus. */
 .tile {
   position: relative;
-  border-radius: var(--cr-radius-l);
-  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  animation-delay: calc(0.25s + var(--i) * 0.08s);
-  transition:
-    translate 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.3s;
+  animation: rise 400ms var(--ease) backwards;
+  animation-delay: calc(80ms + var(--i) * 50ms);
 }
 
-.tile::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from var(--angle),
-    transparent 55%,
-    oklch(0.7 0.2 var(--hue)),
-    oklch(0.75 0.18 calc(var(--hue) + 70)),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.3s;
-  animation: spin 3s linear infinite;
-}
-
-.tile:hover,
-.tile:focus-within {
-  translate: 0 -6px;
-  box-shadow: 0 24px 60px -20px oklch(0.6 0.22 var(--hue));
-}
-
-.tile:hover::before,
-.tile:focus-within::before {
-  opacity: 1;
+/* Hover is a surface step: the card takes the raised tone. */
+.tile:hover {
+  --cr-color-surface: var(--raised);
 }
 
 .tile:has(.link:focus-visible) {
-  outline: 3px solid var(--cr-color-focus);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
+  border-radius: var(--cr-radius-l);
 }
 
 .card {
-  position: relative;
   display: block;
   height: 100%;
 }
 
-.preview {
+.info {
   display: grid;
-  place-items: center;
-  height: 128px;
-  border-radius: var(--cr-radius-m);
-  font-size: 4rem;
-  font-weight: 800;
-  color: #fff;
-  background:
-    radial-gradient(circle at 25% 20%, oklch(0.85 0.12 calc(var(--hue) + 70)), transparent 55%),
-    linear-gradient(135deg, oklch(0.55 0.22 var(--hue)), oklch(0.45 0.2 calc(var(--hue) - 50)));
+  gap: 8px;
 }
 
-.body {
+.meta {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--cr-spacing-sm);
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.number {
+  color: var(--accent);
 }
 
 .name {
   margin: 0;
-  font-size: var(--cr-font-size-l);
+  font-family: var(--font-serif), serif;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 1.1;
 }
 
 .link {
@@ -164,7 +215,7 @@
   outline: none;
 }
 
-/* The whole card is clickable through the title link. */
+/* The whole card opens the landing through the title link. */
 .link::after {
   content: "";
   position: absolute;
@@ -172,39 +223,118 @@
 }
 
 .description {
-  margin: var(--cr-spacing-sm) 0 0;
-  color: var(--cr-color-text-muted);
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-2);
+}
+
+/* Sub-page shortcuts: plain links above the card-wide link. */
+.pages {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.pages a {
+  color: var(--text-2);
+  text-decoration: underline;
+  text-decoration-color: var(--hairline);
+  text-underline-offset: 4px;
+  transition:
+    color 150ms var(--ease),
+    text-decoration-color 150ms var(--ease);
+}
+
+.pages a:hover {
+  color: var(--text);
+  text-decoration-color: var(--accent);
+}
+
+.pages a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Live preview (LandingPreview) ---- */
+
+/* Proof: the preview framed by printer's crop marks. */
+.proof {
+  --mark: var(--muted);
+  position: relative;
+  padding: 12px;
+  background:
+    linear-gradient(var(--mark), var(--mark)) left 0 top 12px / 8px 1px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) left 12px top 0 / 1px 8px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) right 0 top 12px / 8px 1px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) right 12px top 0 / 1px 8px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) left 0 bottom 12px / 8px 1px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) left 12px bottom 0 / 1px 8px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) right 0 bottom 12px / 8px 1px no-repeat,
+    linear-gradient(var(--mark), var(--mark)) right 12px bottom 0 / 1px 8px no-repeat;
+}
+
+.tile:hover .proof {
+  --mark: var(--accent);
+}
+
+/* The landing rendered 1280px wide, scaled to its box (--scale set by LandingPreview). */
+.preview {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--raised);
+  box-shadow: 0 0 0 1px var(--hairline);
+}
+
+.frame {
+  height: 3200px;
+  border: 0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transform: scale(var(--scale, 0.25)) translateY(0);
+  transition: transform 1.2s var(--ease);
+}
+
+/* On hover, the preview scrolls slowly down its landing. */
+.tile:hover .frame {
+  transform: scale(var(--scale, 0.25)) translateY(-2400px);
+  transition-duration: 9s;
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(8px);
   }
 }
 
-@keyframes shine {
-  to {
-    background-position: 100% 0;
+@media (max-width: 600px) {
+  .bar {
+    padding: 0 16px;
   }
-}
 
-@keyframes spin {
-  to {
-    --angle: 360deg;
+  .main {
+    padding: 8px 16px 64px;
+  }
+
+  .intro {
+    padding: 40px 0 24px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero,
-  .tile,
-  .tile::before,
-  .title {
+  .intro,
+  .tile {
     animation: none;
   }
 
-  .tile:hover,
-  .tile:focus-within {
-    translate: none;
+  .tile:hover .frame {
+    transform: scale(var(--scale, 0.25));
   }
 }

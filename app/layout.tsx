@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "landing-lab",
-  description: "Landing page built with Cristal UI",
+  description: "Le labo des landing pages construites avec Cristal",
 };
 
 // Before paint: the saved theme, else the system one, so the page and CrThemeToggle agree; then save every change.

@@ -4,16 +4,22 @@ export type Landing = {
   title: string;
   description: string;
   status: "live" | "draft";
-  hue: number; // accent of the card preview, 0-360
+  hue: number; // accent of the card glow, 0-360
+  pages?: { label: string; href: string }[]; // sub-pages worth a shortcut on the card
 };
 
 export const landings: Landing[] = [
   {
     slug: "voyage",
     title: "Agence de voyage",
-    description: "Ailleurs, agence fictive : recherche de vols, destinations et newsletter.",
+    description: "Ailleurs, agence fictive : recherche, 8 destinations avec leur programme et réservation en ligne.",
     status: "draft",
     hue: 230,
+    pages: [
+      { label: "Destinations", href: "/l/voyage/destinations" },
+      { label: "Fiche Bali", href: "/l/voyage/destinations/bali" },
+      { label: "Réservation", href: "/l/voyage/reservation" },
+    ],
   },
   {
     slug: "apex",
@@ -21,6 +27,10 @@ export const landings: Landing[] = [
     description: "Page de fan : les 28 légendes, leurs classes et leurs capacités.",
     status: "draft",
     hue: 25,
+    pages: [
+      { label: "Légendes", href: "/l/apex#legendes" },
+      { label: "Classes", href: "/l/apex#classes" },
+    ],
   },
   {
     slug: "starter",

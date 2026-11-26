@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CrButton, CrCommandPalette, CrKbd } from "@cristal-ui/react";
 import type { Landing } from "./landings";
+import styles from "./page.module.css";
 
 const groups = { live: "En ligne", draft: "Brouillons" };
 
@@ -13,7 +14,7 @@ export function LandingSearch({ landings }: { landings: Landing[] }) {
 
   return (
     <>
-      <CrButton variant="outline" size="s" onClick={() => setOpen(true)}>
+      <CrButton variant="outline" size="s" className={styles.trigger} onClick={() => setOpen(true)}>
         Rechercher <CrKbd keys="Mod+K" />
       </CrButton>
       <CrCommandPalette
