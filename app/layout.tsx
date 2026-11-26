@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@cristal-ui/react/tokens.css";
+import "@cristal-ui/react/tokens-dark.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,9 +19,15 @@ export const metadata: Metadata = {
   description: "Landing page built with Cristal UI",
 };
 
+// Before paint: the saved theme, else the system one, so the page and CrThemeToggle agree; then save every change.
+const themeScript = `try{const r=document.documentElement;r.dataset.theme=localStorage.theme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");new MutationObserver(()=>{localStorage.theme=r.dataset.theme}).observe(r,{attributeFilter:["data-theme"]})}catch{}`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>{children}</body>
     </html>
   );

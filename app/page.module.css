@@ -1,0 +1,210 @@
+@property --angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.page {
+  display: block;
+  min-height: 100dvh;
+  padding: var(--cr-spacing-xl) var(--cr-spacing-lg) var(--cr-spacing-3xl);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cr-spacing-lg);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.brand {
+  font-weight: var(--cr-font-weight-bold);
+  letter-spacing: -0.02em;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--cr-spacing-sm);
+}
+
+.main {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.hero {
+  display: grid;
+  justify-items: center;
+  gap: var(--cr-spacing-lg);
+  padding: var(--cr-spacing-3xl) 0;
+  text-align: center;
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.75rem, 9vw, 6rem);
+  line-height: 1.1;
+  padding-bottom: 0.08em; /* background-clip: text clips descenders otherwise */
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  background: linear-gradient(
+    100deg,
+    var(--cr-color-text) 20%,
+    var(--cr-color-primary-text) 40%,
+    oklch(from var(--cr-color-primary-text) l c calc(h + 60)) 50%,
+    var(--cr-color-text) 70%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s ease-in-out infinite alternate;
+}
+
+.lead {
+  max-width: 36ch;
+  margin: 0;
+  font-size: var(--cr-font-size-l);
+  color: var(--cr-color-text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--cr-spacing-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Animated border: a rotating light runs along the card edge on hover or focus. */
+.tile {
+  position: relative;
+  border-radius: var(--cr-radius-l);
+  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(0.25s + var(--i) * 0.08s);
+  transition:
+    translate 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 55%,
+    oklch(0.7 0.2 var(--hue)),
+    oklch(0.75 0.18 calc(var(--hue) + 70)),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  animation: spin 3s linear infinite;
+}
+
+.tile:hover,
+.tile:focus-within {
+  translate: 0 -6px;
+  box-shadow: 0 24px 60px -20px oklch(0.6 0.22 var(--hue));
+}
+
+.tile:hover::before,
+.tile:focus-within::before {
+  opacity: 1;
+}
+
+.tile:has(.link:focus-visible) {
+  outline: 3px solid var(--cr-color-focus);
+  outline-offset: 4px;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;
+}
+
+.preview {
+  display: grid;
+  place-items: center;
+  height: 128px;
+  border-radius: var(--cr-radius-m);
+  font-size: 4rem;
+  font-weight: 800;
+  color: #fff;
+  background:
+    radial-gradient(circle at 25% 20%, oklch(0.85 0.12 calc(var(--hue) + 70)), transparent 55%),
+    linear-gradient(135deg, oklch(0.55 0.22 var(--hue)), oklch(0.45 0.2 calc(var(--hue) - 50)));
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cr-spacing-sm);
+}
+
+.name {
+  margin: 0;
+  font-size: var(--cr-font-size-l);
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+/* The whole card is clickable through the title link. */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.description {
+  margin: var(--cr-spacing-sm) 0 0;
+  color: var(--cr-color-text-muted);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .tile,
+  .tile::before,
+  .title {
+    animation: none;
+  }
+
+  .tile:hover,
+  .tile:focus-within {
+    translate: none;
+  }
+}
