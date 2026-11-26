@@ -10,6 +10,20 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "immobilier",
+    title: "Agence immobilière",
+    description: "Haven, agence fictive : 16 maisons et appartements, fiches avec simulation de prêt, estimation en ligne et prise de rendez-vous.",
+    status: "draft",
+    hue: 40,
+    pages: [
+      { label: "Nos biens", href: "/l/immobilier/biens" },
+      { label: "Fiche Villefranche", href: "/l/immobilier/biens/villa-azur" },
+      { label: "Vendre", href: "/l/immobilier/vendre" },
+      { label: "L'agence", href: "/l/immobilier/agence" },
+      { label: "Conseils", href: "/l/immobilier/conseils" },
+    ],
+  },
+  {
     slug: "voyage",
     title: "Agence de voyage",
     description: "Ailleurs, agence fictive : recherche, 8 destinations avec leur programme et réservation en ligne.",
