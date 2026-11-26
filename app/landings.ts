@@ -10,6 +10,18 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "escapades",
+    title: "Voyages nature",
+    description: "Horizons, agence fictive : carrousel 3D de 8 destinations, fiches avec programme, offres et réservation.",
+    status: "draft",
+    hue: 25,
+    pages: [
+      { label: "Fiche Machu Picchu", href: "/l/escapades/destination/machu-picchu" },
+      { label: "Offres spéciales", href: "/l/escapades/offres" },
+      { label: "Réserver", href: "/l/escapades/reserver" },
+    ],
+  },
+  {
     slug: "jeux",
     title: "Boutique de jeux",
     description: "Pulse, marketplace fictive : jeux inventés, recherche, amis en ligne, liste de souhaits, panier et bibliothèque.",
