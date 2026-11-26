@@ -10,6 +10,18 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "velo",
+    title: "Vélo",
+    description: "Kairn, marque fictive : trois vélos à présenter avec points d'info, fiches, guide des tailles et panier.",
+    status: "draft",
+    hue: 135,
+    pages: [
+      { label: "Fiche Vortex", href: "/l/velo/modeles/vortex" },
+      { label: "Fiche Sentier", href: "/l/velo/modeles/sentier" },
+      { label: "Panier", href: "/l/velo/panier" },
+    ],
+  },
+  {
     slug: "concession",
     title: "Concessionnaire de prestige",
     description: "Renc, concession fictive : 10 voitures de prestige, fiches avec financement, essai sur rendez-vous et journal.",
