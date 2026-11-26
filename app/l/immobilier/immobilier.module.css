@@ -1,0 +1,1090 @@
+/* Navy night and brass: dusk photos carry the color, gold marks prices and actions.
+   Doubled class beats .cr-theme-dark whatever the CSS order. */
+.page.page {
+  --ink: #0a101c;
+  --navy: #0f1828;
+  --panel: rgb(255 255 255 / 0.04);
+  --line: rgb(255 255 255 / 0.1);
+  --gold: #c9a46a;
+  --gold-light: #e2c492;
+  --text: #f3efe7;
+  --text-2: #bdb6aa;
+  --muted: #8f897e;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Cristal derives these at :root from its own colors: map them to this palette. */
+  --cr-color-primary: var(--gold);
+  --cr-color-primary-hover: var(--gold-light);
+  --cr-color-on-primary: #17120a;
+  --cr-color-primary-text: var(--gold-light);
+  --cr-color-primary-indicator: var(--gold);
+  --cr-color-primary-subtle: rgb(201 164 106 / 0.16);
+  --cr-color-primary-subtle-hover: rgb(201 164 106 / 0.24);
+  --cr-color-focus: var(--gold-light);
+  --cr-color-surface: var(--navy);
+  --cr-color-text: var(--text);
+  --cr-color-text-muted: var(--text-2);
+  --cr-color-border: rgb(255 255 255 / 0.14);
+
+  min-height: 100dvh;
+  color: var(--text);
+  background:
+    radial-gradient(900px 600px at 0% 100%, rgb(201 164 106 / 0.1), transparent 70%),
+    radial-gradient(900px 700px at 100% 60%, rgb(37 68 130 / 0.22), transparent 70%),
+    var(--ink);
+  font-family: var(--font-geist-sans), var(--cr-font-family);
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-2);
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+/* Gold circle around an arrow: the "go" sign of every link-card. */
+.round {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgb(201 164 106 / 0.5);
+  border-radius: 50%;
+  color: var(--gold);
+  transition:
+    background 200ms var(--ease),
+    color 200ms var(--ease);
+}
+
+/* ---- Bar ---- */
+
+.bar {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.logo small {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--text-2);
+}
+
+.mark {
+  color: var(--gold);
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+  margin: 0 auto;
+}
+
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 150ms var(--ease);
+}
+
+.nav a:hover {
+  color: var(--gold-light);
+}
+
+.barButton,
+.searchButton {
+  --cr-button-background: var(--gold);
+  --cr-button-background-hover: var(--gold-light);
+  --cr-button-color: #17120a;
+}
+
+/* ---- Hero ---- */
+
+.hero {
+  position: relative;
+  display: grid;
+  min-height: min(860px, 100dvh);
+  padding: 140px 32px 120px;
+  overflow: hidden;
+}
+
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  background: transparent;
+  animation: drift 30s ease-in-out infinite alternate;
+}
+
+/* Darken the left for the headline and the bottom for the search bar. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgb(10 16 28 / 0.92), rgb(10 16 28 / 0.55) 45%, rgb(10 16 28 / 0.1) 75%),
+    linear-gradient(to top, var(--ink), transparent 35%);
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+.heroText {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+  animation: rise 900ms var(--ease) backwards;
+}
+
+.title {
+  margin: 0;
+  max-width: 14ch;
+  font-family: var(--font-display), serif;
+  font-size: clamp(52px, 8vw, 104px);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+}
+
+.title em,
+.heading em {
+  display: block;
+  color: var(--gold);
+  font-style: normal;
+}
+
+.lead {
+  max-width: 30rem;
+  margin: 0;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--text-2);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.ghost {
+  --cr-button-background: rgb(255 255 255 / 0.04);
+  --cr-button-background-hover: rgb(255 255 255 / 0.1);
+  --cr-button-color: var(--text);
+  --cr-button-border: rgb(255 255 255 / 0.3);
+}
+
+/* Smoked glass card for the featured listing. */
+.exclusive {
+  display: grid;
+  gap: 12px;
+  padding: 28px;
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 16px;
+  color: var(--text);
+  text-decoration: none;
+  background: rgb(15 24 40 / 0.55);
+  backdrop-filter: blur(16px);
+  animation: rise 900ms 200ms var(--ease) backwards;
+  transition: border-color 200ms var(--ease);
+}
+
+.exclusive:hover {
+  border-color: rgb(201 164 106 / 0.6);
+}
+
+.exclusive:hover .round,
+.service:hover .round {
+  color: #17120a;
+  background: var(--gold);
+}
+
+.exclusiveName {
+  font-family: var(--font-display), serif;
+  font-size: 28px;
+  font-weight: 500;
+  font-variant: small-caps;
+  line-height: 1.1;
+}
+
+.exclusive .specs {
+  padding: 16px 0;
+  border-block: 1px solid var(--line);
+}
+
+.exclusivePrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.place {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+/* Beds, baths, area: icon and figure on top, label below. */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0;
+}
+
+.specs div {
+  display: flex;
+  flex-direction: column-reverse;
+  /* Figures stay on one line even when a label wraps. */
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.specs dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.specs dd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.specs dd .icon {
+  color: var(--text-2);
+}
+
+/* ---- Search ---- */
+
+.searchWrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: -72px auto 0;
+  padding: 0 32px;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr)) auto;
+  align-items: end;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgb(15 24 40 / 0.85);
+  backdrop-filter: blur(16px);
+}
+
+.searchIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--text-2);
+}
+
+/* ---- Sections ---- */
+
+.main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px 96px;
+}
+
+.section {
+  margin-top: 96px;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  margin-bottom: 32px;
+}
+
+.heading {
+  margin: 8px 0 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(34px, 4.5vw, 52px);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gold-light);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.more:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---- Listing cards ---- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  animation: rise 600ms var(--ease) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+  transition:
+    border-color 200ms var(--ease),
+    background 200ms var(--ease);
+}
+
+.card:hover {
+  border-color: rgb(201 164 106 / 0.45);
+  background: rgb(255 255 255 / 0.06);
+}
+
+.card:has(.cardLink:focus-visible) {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+.cardMedia {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.cardPhoto {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  transition: scale 800ms var(--ease);
+}
+
+.card:hover .cardPhoto {
+  scale: 1.06;
+}
+
+.cardKind {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+/* Above the card-wide link so it can be pressed on its own. */
+.favorite {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  --cr-button-color: #fff;
+}
+
+.favorite[pressed] {
+  --cr-button-color: var(--gold);
+}
+
+.favorite[pressed] svg {
+  fill: currentColor;
+}
+
+.cardBody {
+  display: grid;
+  gap: 12px;
+  padding: 20px;
+}
+
+.cardName {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.cardLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.cardLink:focus-visible {
+  outline: none;
+}
+
+.cardLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.cardBody .specs {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.cardPrice {
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Services ---- */
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: var(--text);
+  text-decoration: none;
+  background: var(--panel);
+  transition: border-color 200ms var(--ease);
+}
+
+.service:hover {
+  border-color: rgb(201 164 106 / 0.45);
+}
+
+.service strong {
+  font-family: var(--font-display), serif;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.service .muted {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.service .round {
+  margin-top: auto;
+}
+
+.serviceIcon {
+  width: 28px;
+  height: 28px;
+  color: var(--gold);
+}
+
+/* ---- Inner pages ---- */
+
+.inner {
+  display: grid;
+  gap: 24px;
+  padding-top: 128px;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 16px 24px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.toolbar > * {
+  min-width: 180px;
+}
+
+.count {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Listing page */
+
+.cover {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 560px;
+  padding: 140px 32px 48px;
+  overflow: hidden;
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--ink), rgb(10 16 28 / 0.35) 55%, rgb(10 16 28 / 0.6)),
+    linear-gradient(90deg, rgb(10 16 28 / 0.6), transparent 60%);
+}
+
+.coverPhoto {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  animation: drift 30s ease-in-out infinite alternate;
+}
+
+.coverText {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  width: 100%;
+  max-width: 1216px;
+  margin: 0 auto;
+}
+
+.coverTitle {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(44px, 7vw, 84px);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.coverPrice {
+  margin: 0;
+  font-size: 28px;
+  color: var(--gold-light);
+  font-variant-numeric: tabular-nums;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gallery li {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.gallery :global(cr-image) {
+  height: 100%;
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+  gap: 48px;
+  padding-top: 48px;
+}
+
+.detailBody {
+  display: grid;
+  gap: 24px;
+}
+
+.detailBody > .specs {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.prose {
+  margin: 0;
+  font-size: 17px;
+  line-height: 28px;
+  color: var(--text-2);
+}
+
+.subheading {
+  margin: 16px 0 0;
+  font-family: var(--font-display), serif;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.features .icon {
+  color: var(--gold);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 0;
+}
+
+.facts div {
+  display: grid;
+  gap: 4px;
+}
+
+.facts dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.aside {
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 16px;
+}
+
+.asideTitle {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.asideTitle small {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.agent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agent span {
+  display: grid;
+  font-size: 14px;
+}
+
+.calculator {
+  display: grid;
+  gap: 16px;
+}
+
+.monthly {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.monthly strong {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--gold-light);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Appointment page */
+
+.appointment {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+  gap: 32px;
+}
+
+.fieldset {
+  display: grid;
+  gap: 20px;
+  margin: 0 0 24px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.fieldset legend {
+  padding: 0 8px;
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.summaryPhoto {
+  height: 180px;
+  border-radius: 10px;
+}
+
+.summaryName {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.confirmation {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+}
+
+.confirmationActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---- Footer ---- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: var(--text-2);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+@keyframes drift {
+  to {
+    scale: 1.06;
+  }
+}
+
+@media (max-width: 1000px) {
+  .heroInner,
+  .detail,
+  .appointment {
+    grid-template-columns: 1fr;
+  }
+
+  .exclusive {
+    max-width: 360px;
+  }
+
+  .search {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .searchIcon {
+    display: none;
+  }
+
+  .aside {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav {
+    display: none;
+  }
+
+  .bar {
+    justify-content: space-between;
+    padding: 16px;
+  }
+
+  .hero {
+    padding: 112px 16px 112px;
+  }
+
+  .searchWrap,
+  .main {
+    padding-inline: 16px;
+  }
+
+  .search {
+    grid-template-columns: 1fr;
+  }
+
+  .cover {
+    padding-inline: 16px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery li:first-child {
+    grid-column: span 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPhoto,
+  .coverPhoto,
+  .heroText,
+  .exclusive,
+  .card {
+    animation: none;
+  }
+}
+
+.summaryName .place {
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+/* ---- Sell, agency and advice pages ---- */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 20px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  color: var(--gold);
+  font-family: var(--font-display), serif;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.steps strong {
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.steps .muted {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+}
+
+.story > div {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+}
+
+.storyPhoto {
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 20px;
+  margin: 24px 0 0;
+}
+
+.figures div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+}
+
+.figures dt {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.figures dd {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 44px;
+  line-height: 1;
+  color: var(--gold-light);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.offices {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 20px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offices :global(cr-card) {
+  height: 100%;
+}
+
+.offices .place {
+  margin-top: 8px;
+}
+
+.officeArea {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+}
+
+.guides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 24px 48px;
+}
+
+@media (max-width: 1000px) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+}
