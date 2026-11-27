@@ -10,6 +10,19 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "salle-de-sport",
+    title: "Salle de sport",
+    description: "Fonte, salle fictive : photos d'une même séance en noir et blanc, affluence par heure, planning réservable, abonnements et essai.",
+    status: "draft",
+    hue: 80,
+    pages: [
+      { label: "Planning", href: "/l/salle-de-sport/planning" },
+      { label: "Abonnements", href: "/l/salle-de-sport/abonnements" },
+      { label: "Coachs", href: "/l/salle-de-sport/coachs" },
+      { label: "Séance d'essai", href: "/l/salle-de-sport/essai" },
+    ],
+  },
+  {
     slug: "gastronomie",
     title: "Restaurant gastronomique",
     description: "Ardoise, restaurant fictif : trois menus en onglets, carte des vins filtrable, l'équipe et réservation d'une table.",
