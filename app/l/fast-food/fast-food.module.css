@@ -205,7 +205,6 @@
   width: 100%;
   max-width: 1216px;
   margin: 0 auto;
-  animation: rise 800ms var(--ease) backwards;
 }
 
 .title {
@@ -352,8 +351,6 @@
   border-radius: 20px;
   background: var(--card);
   box-shadow: 0 1px 2px rgb(29 26 22 / 0.06), 0 8px 24px rgb(29 26 22 / 0.06);
-  animation: rise 600ms var(--ease) backwards;
-  animation-delay: calc(var(--i, 0) * 60ms);
   transition: translate 250ms var(--ease);
 }
 
@@ -789,13 +786,6 @@
   gap: 12px;
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    translate: 0 16px;
-  }
-}
-
 @keyframes drift {
   to {
     scale: 1.05;
@@ -860,9 +850,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .heroPhoto,
-  .heroInner,
-  .card {
+  .heroPhoto {
     animation: none;
   }
 }
