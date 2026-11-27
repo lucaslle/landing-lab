@@ -10,6 +10,19 @@ export type Landing = {
 
 export const landings: Landing[] = [
   {
+    slug: "gastronomie",
+    title: "Restaurant gastronomique",
+    description: "Ardoise, restaurant fictif : trois menus en onglets, carte des vins filtrable, l'équipe et réservation d'une table.",
+    status: "draft",
+    hue: 350,
+    pages: [
+      { label: "Menus", href: "/l/gastronomie/menus" },
+      { label: "La cave", href: "/l/gastronomie/cave" },
+      { label: "La maison", href: "/l/gastronomie/maison" },
+      { label: "Réserver", href: "/l/gastronomie/reserver" },
+    ],
+  },
+  {
     slug: "escapades",
     title: "Voyages nature",
     description: "Horizons, agence fictive : carrousel 3D de 8 destinations, fiches avec programme, offres et réservation.",

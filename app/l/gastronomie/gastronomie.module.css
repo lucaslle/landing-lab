@@ -1,0 +1,730 @@
+/* Linen paper, slate ink, a serif for titles and one wine red for booking; the plates carry the color.
+   Doubled class beats .cr-theme whatever the CSS order. */
+.page.page {
+  --linen: #f5f1ea;
+  --card: #fffdf9;
+  --ink: #1c1d1f;
+  --text-2: #55524c;
+  --muted: #7c776e;
+  --line: rgb(28 29 31 / 0.1);
+  --wine: #7b2335;
+  --wine-hover: #8f2b40;
+  --slate: #1e2124;
+  --slate-text: #ece7de;
+  --slate-text-2: #a9a49b;
+
+  --cr-color-primary: var(--wine);
+  --cr-color-primary-hover: var(--wine-hover);
+  --cr-color-on-primary: #fff;
+  --cr-color-primary-text: var(--wine);
+  --cr-color-primary-indicator: var(--wine);
+  --cr-color-primary-subtle: rgb(123 35 53 / 0.08);
+  --cr-color-primary-subtle-hover: rgb(123 35 53 / 0.14);
+  --cr-color-focus: var(--wine);
+  --cr-color-surface: var(--card);
+  --cr-color-text: var(--ink);
+  --cr-color-text-muted: var(--text-2);
+
+  /* The site's dark theme sets color-scheme on :root; native controls must stay light here. */
+  color-scheme: light;
+  min-height: 100dvh;
+  color: var(--ink);
+  background: var(--linen);
+  font-family: var(--font-geist-sans), var(--cr-font-family);
+}
+
+.muted {
+  margin: 0;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+.kicker {
+  margin: 0;
+  color: var(--wine);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.heading,
+.title {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.heading {
+  font-size: 40px;
+}
+
+.title {
+  font-size: 52px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.book {
+  --cr-button-background: var(--wine);
+  --cr-button-background-hover: var(--wine-hover);
+  --cr-button-color: #fff;
+}
+
+/* Outline button on the dark hero and slate section. */
+.light {
+  --cr-button-color: var(--slate-text);
+  --cr-button-border: rgb(236 231 222 / 0.5);
+  --cr-button-background-hover: rgb(236 231 222 / 0.1);
+}
+
+/* ---- Bar ---- */
+
+.bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  height: 64px;
+  padding: 0 40px;
+  border-bottom: 1px solid var(--line);
+  background: var(--linen);
+}
+
+.logo {
+  color: var(--ink);
+  font-family: var(--font-display), serif;
+  font-size: 28px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav a {
+  color: var(--text-2);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.bar > :last-child {
+  margin-left: auto;
+}
+
+/* ---- Hero ---- */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  min-height: min(820px, calc(100dvh - 64px));
+  padding: 96px max(40px, calc((100% - 1200px) / 2)) 0;
+  overflow: hidden;
+  color: var(--slate-text);
+  background: var(--slate);
+}
+
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+/* Darkens the left side so the text reads on the plate. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgb(20 22 24 / 0.85), rgb(20 22 24 / 0.35) 55%, transparent);
+}
+
+.heroText,
+.heroFacts {
+  position: relative;
+  z-index: 2;
+}
+
+.heroText {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  max-width: 520px;
+}
+
+.heroText .kicker {
+  color: var(--slate-text-2);
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 112px;
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.heroLead {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--slate-text);
+}
+
+.heroFacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin: 64px 0 0;
+  padding: 24px 0 32px;
+  border-top: 1px solid rgb(236 231 222 / 0.2);
+}
+
+.heroFacts dt {
+  color: var(--slate-text-2);
+  font-size: 13px;
+}
+
+.heroFacts dd {
+  margin: 4px 0 0;
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+}
+
+/* ---- Sections ---- */
+
+.section {
+  display: grid;
+  gap: 40px;
+  padding: 96px max(40px, calc((100% - 1200px) / 2));
+}
+
+/* Two linen sections in a row share one gap. */
+.section:not(.slate) + .section:not(.slate) {
+  padding-top: 0;
+}
+
+.slate {
+  color: var(--slate-text);
+  background: var(--slate);
+}
+
+.slate .kicker {
+  color: #d9a3ad;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.sectionHead > div,
+.intro {
+  display: grid;
+  align-content: start;
+  justify-items: start;
+  gap: 16px;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: center;
+  gap: 64px;
+}
+
+.dishes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dishPhoto {
+  aspect-ratio: 4 / 5;
+  border-radius: 4px;
+}
+
+.dishName {
+  margin: 12px 0 2px;
+  font-family: var(--font-display), serif;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.dishMenu,
+.distance {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.menuCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menuCard {
+  display: grid;
+  gap: 4px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.menuPhoto {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  transition: opacity 200ms ease;
+}
+
+.menuCard:hover .menuPhoto {
+  opacity: 0.85;
+}
+
+.menuName {
+  font-family: var(--font-display), serif;
+  font-size: 28px;
+}
+
+.menuMeta {
+  font-variant-numeric: tabular-nums;
+}
+
+.menuServed {
+  color: var(--slate-text-2);
+  font-size: 14px;
+}
+
+.producers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.producers li {
+  display: grid;
+  gap: 4px;
+}
+
+.producerPhoto {
+  aspect-ratio: 4 / 3;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.producerName {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+}
+
+.hours {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.hours dt {
+  color: var(--text-2);
+}
+
+.hours dd {
+  margin: 0;
+  text-align: right;
+}
+
+/* ---- Inner pages ---- */
+
+.inner {
+  display: grid;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 40px 96px;
+}
+
+.wide {
+  aspect-ratio: 10 / 7;
+  border-radius: 4px;
+}
+
+.block {
+  display: grid;
+  gap: 24px;
+  padding-top: 32px;
+}
+
+/* Menus */
+
+.menu {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: start;
+  gap: 56px;
+  padding-top: 32px;
+}
+
+.menuCover {
+  position: sticky;
+  top: 24px;
+  aspect-ratio: 9 / 11;
+  border-radius: 4px;
+}
+
+.menuBody {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+}
+
+/* Printed-menu look: italic serif numbers in the margin. */
+.courses {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: course;
+}
+
+.courses li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 8px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  counter-increment: course;
+}
+
+.courses li::before {
+  content: counter(course);
+  grid-row: span 2;
+  color: var(--wine);
+  font-family: var(--font-display), serif;
+  font-size: 24px;
+  font-style: italic;
+  line-height: 1;
+}
+
+.courseName {
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.prices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin: 8px 0;
+}
+
+.prices dt {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.prices dd {
+  margin: 4px 0 0;
+  font-family: var(--font-display), serif;
+  font-size: 32px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Cellar */
+
+.wineList {
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+}
+
+.wineList > :last-child {
+  width: 100%;
+}
+
+/* House */
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.team li {
+  display: flex;
+  align-items: start;
+  gap: 16px;
+}
+
+.memberName {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+}
+
+.memberRole {
+  margin: 0 0 6px;
+  color: var(--wine);
+  font-size: 13px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.galleryPhoto {
+  aspect-ratio: 10 / 7;
+  border-radius: 4px;
+}
+
+.private {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  align-items: center;
+  gap: 56px;
+}
+
+.privatePhoto {
+  aspect-ratio: 3 / 2;
+  border-radius: 4px;
+}
+
+/* ---- Reservation ---- */
+
+.form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  align-items: start;
+  gap: 32px;
+}
+
+.fieldset {
+  display: grid;
+  gap: 20px;
+  margin: 0 0 24px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+}
+
+.fieldset legend {
+  padding: 0 8px;
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.aside {
+  position: sticky;
+  top: 24px;
+}
+
+.summaryPhoto {
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+}
+
+.summaryName {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 0;
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.summaryName span {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.summaryName span::first-letter {
+  text-transform: uppercase;
+}
+
+.lines {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.lines div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lines dt {
+  color: var(--text-2);
+}
+
+.lines dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.lines .total {
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display), serif;
+  font-size: 26px;
+}
+
+.lines .total dt {
+  color: var(--ink);
+}
+
+.note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.confirmation {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+  max-width: 720px;
+}
+
+/* ---- Footer ---- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 40px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  color: inherit;
+}
+
+/* ---- Small screens ---- */
+
+@media (max-width: 1000px) {
+  .split,
+  .menu,
+  .private,
+  .form {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .menuCover,
+  .aside {
+    position: static;
+  }
+
+  .menuCover {
+    aspect-ratio: 16 / 9;
+  }
+
+  .producers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .bar {
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .hero {
+    padding: 64px 16px 0;
+  }
+
+  .heroTitle {
+    font-size: 72px;
+  }
+
+  .heroFacts {
+    gap: 24px;
+  }
+
+  .section {
+    padding: 64px 16px;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .title {
+    font-size: 40px;
+  }
+
+  .dishes,
+  .menuCards,
+  .gallery {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .inner,
+  .footer {
+    padding-inline: 16px;
+  }
+}

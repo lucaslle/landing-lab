@@ -10,3 +10,10 @@ body {
   font-family: var(--cr-font-family);
   -webkit-font-smoothing: antialiased;
 }
+
+/* CrImage starts blurred and zoomed, then sharpens over 2 s: show photos as soon as they load instead. */
+cr-image::part(image) {
+  filter: none;
+  transform: none;
+  transition: none;
+}
