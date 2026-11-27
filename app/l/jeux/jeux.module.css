@@ -333,7 +333,6 @@
   inset: 0;
   z-index: -1;
   height: 100%;
-  animation: fade 700ms var(--ease) backwards;
 }
 
 .hero::before {
@@ -351,7 +350,6 @@
   justify-items: start;
   gap: 14px;
   max-width: 440px;
-  animation: rise 600ms var(--ease) backwards;
 }
 
 .kicker {
@@ -778,19 +776,6 @@
   color: var(--online);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    translate: 0 12px;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-}
-
 @media (max-width: 1200px) {
   .app {
     grid-template-columns: 200px minmax(0, 1fr);
@@ -851,12 +836,5 @@
 
   .line {
     grid-template-columns: 56px minmax(0, 1fr) auto;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .heroPhoto,
-  .heroText {
-    animation: none;
   }
 }

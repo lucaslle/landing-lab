@@ -171,7 +171,6 @@
   display: grid;
   justify-items: start;
   gap: 16px;
-  animation: rise 600ms var(--ease) backwards;
 }
 
 .family {
@@ -235,7 +234,6 @@
 .stage {
   position: relative;
   grid-area: stage;
-  animation: slide 700ms var(--ease) backwards;
 }
 
 .arrows {
@@ -762,20 +760,6 @@
   color: var(--text-2);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    translate: 0 12px;
-  }
-}
-
-@keyframes slide {
-  from {
-    opacity: 0;
-    translate: 48px 0;
-  }
-}
-
 @keyframes ping {
   70% {
     box-shadow: 0 0 0 10px rgb(43 191 75 / 0);
@@ -855,8 +839,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .info,
-  .stage,
   .hotspot::part(trigger) {
     animation: none;
   }

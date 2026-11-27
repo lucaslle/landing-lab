@@ -110,7 +110,6 @@
   z-index: 0;
   height: calc(100% + 120px);
   filter: blur(30px) brightness(0.5) saturate(1.1);
-  animation: fade 900ms var(--ease) backwards;
 }
 
 /* Clouds drifting over the lower part of the cards, as in the mockup. */
@@ -202,7 +201,6 @@
   width: min(92vw, 600px);
   translate: -32% 0;
   pointer-events: none;
-  animation: rise 700ms var(--ease) backwards;
 }
 
 .title {
@@ -645,19 +643,6 @@
   color: var(--text-2);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    translate: -32% 16px;
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-}
-
 @keyframes drift {
   to {
     translate: 4% 0;
@@ -722,9 +707,7 @@
     transition: none;
   }
 
-  .backdrop,
-  .clouds,
-  .caption {
+  .clouds {
     animation: none;
   }
 }
