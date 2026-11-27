@@ -126,7 +126,6 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .title {
@@ -162,8 +161,6 @@
   margin: -110px auto 0;
   padding: 0 var(--cr-spacing-xl);
   scroll-margin-top: var(--cr-spacing-xl);
-  /* backwards, not both: a transform left after the animation would trap the fixed toasts in this block. */
-  animation: rise 0.9s 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 }
 
 .search {
@@ -267,8 +264,6 @@
 }
 
 .destinations li {
-  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-  animation-delay: calc(var(--i) * 0.1s);
 }
 
 .destination {
@@ -476,13 +471,6 @@
   color: inherit;
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-}
-
 @keyframes drift {
   to {
     scale: 1.08;
@@ -509,9 +497,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .heroPhoto,
-  .heroText,
-  .searchWrap,
-  .destinations li {
+  .coverPhoto {
     animation: none;
   }
 
@@ -575,7 +561,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 140px var(--cr-spacing-xl) var(--cr-spacing-2xl);
-  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 /* The breadcrumb sits on the photo: light text tokens. */

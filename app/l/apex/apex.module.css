@@ -112,8 +112,6 @@
   transform-origin: 50% 130%;
   rotate: calc((var(--i) - 2) * 11deg);
   filter: drop-shadow(0 20px 30px rgb(0 0 0 / 0.6));
-  animation: deal 1s cubic-bezier(0.2, 0.9, 0.2, 1) both;
-  animation-delay: calc(0.3s + var(--i) * 0.08s);
 }
 
 .fan li:nth-child(3) {
@@ -124,14 +122,6 @@
 /* Side cards overlap at the bottom: only the front card shows its label. */
 .fan li:not(:nth-child(3)) {
   color: transparent;
-}
-
-@keyframes deal {
-  from {
-    opacity: 0;
-    rotate: 0deg;
-    translate: 0 60px;
-  }
 }
 
 @media (max-width: 1000px) {
@@ -148,7 +138,6 @@
   line-height: 0.85;
   text-transform: uppercase;
   letter-spacing: -0.01em;
-  animation: slam 0.9s cubic-bezier(0.2, 0.9, 0.2, 1) both;
 }
 
 .title span {
@@ -322,7 +311,6 @@
 }
 
 .roster li {
-  animation: rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 /* Angled tile: a class-tinted gradient, diagonal stripes and the legend's initials as a watermark. */
@@ -519,21 +507,6 @@
   margin: 0;
 }
 
-@keyframes slam {
-  from {
-    opacity: 0;
-    transform: translateX(-40px) skewX(-12deg);
-    filter: blur(8px);
-  }
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-}
-
 @media (max-width: 720px) {
   .nav {
     display: none;
@@ -549,11 +522,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .title,
-  .roster li {
-    animation: none;
-  }
-
   .legend,
   .step,
   .initials {

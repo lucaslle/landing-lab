@@ -191,7 +191,6 @@
   display: grid;
   justify-items: start;
   gap: 24px;
-  animation: rise 900ms var(--ease) backwards;
 }
 
 .title {
@@ -243,7 +242,6 @@
   text-decoration: none;
   background: rgb(15 24 40 / 0.55);
   backdrop-filter: blur(16px);
-  animation: rise 900ms 200ms var(--ease) backwards;
   transition: border-color 200ms var(--ease);
 }
 
@@ -413,8 +411,6 @@
   border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--panel);
-  animation: rise 600ms var(--ease) backwards;
-  animation-delay: calc(var(--i, 0) * 70ms);
   transition:
     border-color 200ms var(--ease),
     background 200ms var(--ease);
@@ -877,13 +873,6 @@
   color: var(--text-2);
 }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    translate: 0 16px;
-  }
-}
-
 @keyframes drift {
   to {
     scale: 1.06;
@@ -952,10 +941,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .heroPhoto,
-  .coverPhoto,
-  .heroText,
-  .exclusive,
-  .card {
+  .coverPhoto {
     animation: none;
   }
 }
